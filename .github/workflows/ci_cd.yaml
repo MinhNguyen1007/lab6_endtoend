@@ -3,10 +3,6 @@ name: MLOps CI/CD Pipeline
 on:
   push:
     branches: [main]
-    paths:
-      - 'api/**'
-      - 'dags/**'
-      - 'src/**'
 
 jobs:
   lint-and-test:
