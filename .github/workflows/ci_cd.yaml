@@ -64,16 +64,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update image tag in deployment
-        run: |
-          sed -i "s|image: fraud-api:local|image: ${{ secrets.DOCKER_USERNAME }}/fraud-api:${{ github.sha }}|g" k8s/deployment.yaml
-          grep "image:" k8s/deployment.yaml
-
       - name: Commit updated manifest
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin main
+          sed -i "s|image: fraud-api:local|image: ${{ secrets.DOCKER_USERNAME }}/fraud-api:${{ github.sha }}|g" k8s/deployment.yaml
+          grep "image:" k8s/deployment.yaml
           git add k8s/deployment.yaml
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "ci: update image tag to ${{ github.sha }}"
