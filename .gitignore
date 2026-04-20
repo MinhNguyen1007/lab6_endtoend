@@ -1,0 +1,13 @@
+# Tạo .gitignore
+@"
+# Data files
+data/
+# Python cache
+__pycache__/
+dags/__pycache__/
+*.pyc
+# Numpy binary
+*.npy
+# Zip
+*.zip
+"@ | Out-File -FilePath .gitignore -Encoding utf8
