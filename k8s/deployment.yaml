@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: fraud-api
-        image: fraud-api:local
+        image: minhnguyen1007/fraud-api:84dfefcf724fe0b367837abde571c189021586f0
         imagePullPolicy: Never
         ports:
         - containerPort: 8000
